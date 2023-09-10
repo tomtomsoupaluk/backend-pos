@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./configs/database";
 import bodyParser from "body-parser";
 import { errorHandler } from "./middlewares/errorMiddleware";
+import cors from "cors";
 
 // Routes
 import productRoutes from "./routes/productRoute";
@@ -11,6 +12,8 @@ import userRoutes from "./routes/userRoute";
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
