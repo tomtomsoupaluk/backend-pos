@@ -8,6 +8,7 @@ import cors from "cors";
 // Routes
 import productRoutes from "./routes/productRoute";
 import userRoutes from "./routes/userRoute";
+import authRoutes from "./routes/authRoute";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(productRoutes);
 app.use(userRoutes);
+app.use(authRoutes);
 
 app.use(errorHandler);
 
