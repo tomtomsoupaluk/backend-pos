@@ -6,6 +6,7 @@ import {
   updateUserService,
   deleteUserService,
 } from "../services/userService";
+import { successResponse } from "../utils/apiResponse";
 
 export const getAllUsers = async (
   req: Request,
@@ -14,7 +15,7 @@ export const getAllUsers = async (
 ) => {
   try {
     const users = await getAllUsersService();
-    res.send(users);
+    return successResponse(res, "Users fetched successfully", users);
   } catch (error) {
     next(error);
   }
@@ -28,7 +29,7 @@ export const getUserById = async (
   try {
     const { id } = req.params;
     const user = await getUserByIdService(id);
-    res.send(user);
+    return successResponse(res, "User fetched successfully", user);
   } catch (error) {
     next(error);
   }
@@ -41,7 +42,7 @@ export const createUser = async (
 ) => {
   try {
     const user = await createUserService(req.body);
-    res.send(user);
+    return successResponse(res, "User created successfully", user);
   } catch (error) {
     next(error);
   }
@@ -55,7 +56,7 @@ export const updateUser = async (
   try {
     const { id } = req.params;
     const user = await updateUserService(id, req.body);
-    res.send(user);
+    return successResponse(res, "User updated successfully", user);
   } catch (error) {
     next(error);
   }
@@ -69,7 +70,7 @@ export const deleteUser = async (
   try {
     const { id } = req.params;
     const user = await deleteUserService(id);
-    res.send(user);
+    return successResponse(res, "User deleted successfully", user);
   } catch (error) {
     next(error);
   }
