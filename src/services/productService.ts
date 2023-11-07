@@ -31,6 +31,23 @@ export const updateProductService = async (
   );
 };
 
+export const updateProductStockService = async (
+  id: string,
+  quantity: number
+): Promise<IProduct | null> => {
+  return await ProductModel.findByIdAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      qty: quantity,
+    },
+    {
+      new: true,
+    }
+  );
+};
+
 export const deleteProductService = async (
   id: string
 ): Promise<IProduct | null> => {

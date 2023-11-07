@@ -15,6 +15,7 @@ export const getAllProducts = async (
   next: NextFunction
 ) => {
   try {
+    console.log(req.body);
     const products = await getAllProductsService();
     return successResponse(res, "Products fetched successfully", products);
   } catch (error) {

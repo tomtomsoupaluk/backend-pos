@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { successResponse } from "../utils/apiResponse";
 import { createSaleService, getLatestSale } from "../services/saleService";
 import { createSaleItemService } from "../services/saleItemService";
+import { updateProductStockService } from "../services/productService";
 import { ISale } from "../models/saleModel";
 import { ISaleItem } from "../models/saleItemModel";
 
@@ -49,7 +50,7 @@ export const createSale = async (
       billcode: billcode,
       payMethod: req.body.paymentMethod,
       total: req.body.total,
-      sellerId: "321312312323",
+      sellerId: req.body.userId,
       createdAt: new Date(),
       updatedAt: new Date(),
     } as ISale;
@@ -67,6 +68,10 @@ export const createSale = async (
       } as ISaleItem;
 
       await createSaleItemService(SaleItemsData);
+
+      const newQuantity = product.qty - product.qtyToSale;
+
+      await updateProductStockService(product._id, newQuantity);
     });
 
     return successResponse(res, "Sale created successfully", {});

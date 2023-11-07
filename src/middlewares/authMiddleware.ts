@@ -20,8 +20,11 @@ export const authenticateUser = async (
     const token = authorizationHeader.split(" ")[1];
 
     //verify token
-    const decoded = await verifyToken(token);
+    const decoded: any = await verifyToken(token);
     if (!decoded) return errorResponse(res, "Invalid token", 401, {});
+
+    // pass user id to req object
+    req.body.userId = decoded.id;
 
     next();
   } catch (err) {

@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import jsonwebtoken from "jsonwebtoken";
+import jsonwebtoken, { JwtPayload } from "jsonwebtoken";
 
 export const encryptPassword = (password: string) => {
   return bcrypt.hashSync(password, 10);
