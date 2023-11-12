@@ -32,4 +32,14 @@ export const login = async (
   }
 };
 
-
+export const validateToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    return successResponse(res, "Token is valid", req.body);
+  } catch (error) {
+    next(error);
+  }
+};
