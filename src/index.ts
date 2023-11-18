@@ -10,6 +10,8 @@ import productRoutes from "./routes/productRoute";
 import userRoutes from "./routes/userRoute";
 import authRoutes from "./routes/authRoute";
 import saleRoutes from "./routes/saleRoute";
+import dashboardRoutes from "./routes/dashboardRoute";
+import reportRoutes from "./routes/reportRoute";
 
 dotenv.config();
 
@@ -24,6 +26,8 @@ app.use(productRoutes);
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(saleRoutes);
+app.use(dashboardRoutes);
+app.use(reportRoutes);
 
 app.use(errorHandler);
 
