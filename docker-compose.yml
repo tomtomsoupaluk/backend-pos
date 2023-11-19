@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  pos-api:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - storage-volume:/app/storage
+
+volumes:
+  storage-volume:
+    driver: local
